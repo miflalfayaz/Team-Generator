@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Frisbee Team Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             margin: 0;
@@ -19,6 +20,11 @@
             padding: 20px;
         }
         
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -28,10 +34,19 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
+        .container.dark-mode {
+            background-color: #1e1e1e;
+            border-color: #333;
+        }
+        
         h1 {
             text-align: center;
             color: #2c3e50;
             margin-bottom: 30px;
+        }
+        
+        h1.dark-mode {
+            color: #fff;
         }
         
         .section {
@@ -42,10 +57,25 @@
             border-left: 4px solid #3498db;
         }
         
+        .section.dark-mode {
+            background-color: #2c2c2c;
+            border-left-color: #007bff;
+        }
+        
         .section h2 {
             color: #2c3e50;
             margin-bottom: 15px;
         }
+        
+        /* Dark mode styles for headers and subtitles */
+h2.dark-mode, h3.dark-mode, .section > div[style*="color:#555"] {
+    color: #ddd; /* Light grey */
+}
+
+/* Specific card headers in dark mode */
+.section h2.dark-mode {
+    color: #ddd; /* Light grey */
+}
         
         .form-row {
             display: flex;
@@ -116,6 +146,12 @@
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 10px;
             margin-top: 15px;
+            max-height: 350px;         /* Set your preferred height */
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 8px;
         }
         
         .player-card {
@@ -412,7 +448,6 @@
             height: 48px;
             font-size: 18px;
             width: 100%;
-            max-width: 220px;
         }
 
         #numTeamsGrid {
@@ -478,10 +513,222 @@
             display: none;
             margin-top: 15px;
         }
+
+        /* Collapsible Sub Sliders Ribbon */
+        #subSlidersRibbon {
+            cursor: pointer;
+        }
+        
+        #subSlidersToggleIcon {
+            transition: transform 0.3s;
+        }
+        
+        #subSlidersRibbon.collapsed #subSlidersToggleIcon {
+            transform: rotate(-180deg);
+        }
+        
+        #subSlidersRibbon {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .blue-btn {
+    width: 100%;
+    background: #3498db;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 16px 0;
+    font-size: 18px;
+    transition: background 0.2s;
+    box-sizing: border-box;
+}
+.blue-btn:hover,
+.blue-btn:focus {
+    background: #2980b9;
+}
+
+.green-btn {
+    width: 100%;
+    background: #27ae60;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 16px 0;
+    font-size: 18px;
+    transition: background 0.2s;
+    box-sizing: border-box;
+}
+.green-btn:hover,
+.green-btn:focus {
+    background: #219150;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.container.dark-mode {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+.section.dark-mode {
+    background-color: #2c2c2c;
+    border-left-color: #007bff;
+}
+
+button.dark-mode {
+    background-color: #007bff;
+    color: #fff;
+}
+
+button.dark-mode:hover {
+    background-color: #0056b3;
+}
+
+.player-card.dark-mode {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+.player-card.dark-mode.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #0056b3;
+}
+
+.team-card.dark-mode {
+    background-color: #2c2c2c;
+    border-color: #007bff;
+}
+
+.team-header.dark-mode {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.team-stats.dark-mode {
+    background-color: #333;
+}
+
+.team-players li.dark-mode {
+    background-color: #3c3c3c;
+}
+
+.algorithm-status.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.sheets-error.dark-mode {
+    background-color: #721c24;
+    color: #fff;
+}
+
+.sheets-success.dark-mode {
+    background-color: #155724;
+    color: #fff;
+}
+
+.sheets-loading.dark-mode {
+    background-color: #856404;
+    color: #fff;
+}
+
+.player-source.dark-mode {
+    color: #bbb;
+}
+
+.regular-badge.dark-mode {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Transition for smooth mode switching */
+.container, .section, .player-card, .team-card, button {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Dark Mode Toggle Switch */
+.dark-mode-toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-bottom: 20px;
+}
+
+.dark-mode-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.dark-mode-toggle label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.dark-mode-toggle i {
+    color: #fff;
+}
+
+.dark-mode-toggle .fa-sun {
+    color: #ffc107; /* Sun color */
+}
+
+.dark-mode-toggle .fa-moon {
+    color: #eee; /* Moon color */
+}
+
+.dark-mode-toggle .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 34px;
+    height: 34px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-toggle input:checked + label {
+    background-color: #2196F3;
+}
+
+.dark-mode-toggle input:focus + label {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+.dark-mode-toggle input:checked + label .slider {
+    transform: translateX(26px);
+}
     </style>
 </head>
 <body>
     <div class="container">
+        <div id="logo-container">
+    <img id="logo" src="UFA Logo.jpg" alt="Logo" style="max-width: 200px; max-height: 80px;">
+</div>
         <h1>Ultimate Frisbee Team Generator</h1>
         
         <!-- Google Sheets Integration Section -->
@@ -506,8 +753,9 @@
             <div class="button-grid-inner" id="numTeamsGrid" style="margin-bottom: 20px; grid-template-columns: repeat(9, 1fr);">
                 <!-- Number of teams buttons will be generated here -->
             </div>
-            <div class="button-grid-inner" style="justify-content: center;">
-                <button id="generateBtn" onclick="generateTeams()">Generate Teams</button>
+            <div class="button-grid-inner two-col-btns" style="margin-bottom: 0;">
+                <button id="generateBtn" class="blue-btn" onclick="generateTeams()">Generate Teams</button>
+                <!-- <button id="clearTeamsBtn" class="green-btn" onclick="clearTeams()">Clear Teams</button> -->
             </div>
             <div id="algorithmStatus" class="algorithm-status" style="display: none;"></div>
             <div id="balanceInfo" class="balance-info" style="display: none;"></div>
@@ -540,7 +788,10 @@
                 <button id="clearSelectionBtn" onclick="clearSelection()" style="background: #f39c12;">Clear Selection</button>
                 <button id="clearAllBtn" onclick="clearAllPlayers()" style="background: #e74c3c;">Clear All</button>
             </div>
-            <input type="text" id="playerSearch" placeholder="Search players..." style="margin-bottom: 10px; width: 100%; padding: 8px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc;">
+            <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+                <input type="text" id="playerSearch" placeholder="Search players..." style="flex:1; padding: 8px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc;">
+                <button type="button" id="clearPlayerSearchBtn" style="padding: 8px 14px; font-size: 16px; border-radius: 4px;">&#10006;</button>
+            </div>
             <div id="playerList" class="player-list"></div>
         </div>
 
@@ -564,49 +815,68 @@
                         </select>
                     </div>
                 </div>
+                <!-- Total Score Slider at the top -->
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Throwing:</label>
+                        <label>Total Score:</label>
                         <div class="skill-slider">
-                            <input type="range" id="throwing" min="1" max="10" value="5">
-                            <span class="skill-value" id="throwingValue">5</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cutting:</label>
-                        <div class="skill-slider">
-                            <input type="range" id="cutting" min="1" max="10" value="5">
-                            <span class="skill-value" id="cuttingValue">5</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Athleticism:</label>
-                        <div class="skill-slider">
-                            <input type="range" id="athleticism" min="1" max="10" value="5">
-                            <span class="skill-value" id="athleticismValue">5</span>
+                            <input type="range" id="totalScore" min="6" max="60" value="30" inputmode="none">
+                            <span class="skill-value" id="totalScoreValue">30</span>
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Defense:</label>
-                        <div class="skill-slider">
-                            <input type="range" id="defense" min="1" max="10" value="5">
-                            <span class="skill-value" id="defenseValue">5</span>
+                <!-- Collapsible sub sliders -->
+                <div class="form-row" id="subSlidersRibbonHeader" style="cursor:pointer;align-items:center;" onclick="toggleSubSlidersRibbon()">
+                    <div class="form-group" style="flex:1;">
+                        <label style="margin-bottom:0;">Skill Breakdown</label>
+                    </div>
+                    <span id="subSlidersToggleIcon" style="font-size: 22px; user-select: none;">&#x25BC;</span>
+                </div>
+                <div id="subSlidersRibbon" style="display:none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Throwing:</label>
+                            <div class="skill-slider">
+                                <input type="range" id="throwing" min="1" max="10" value="5" inputmode="none">
+                                <span class="skill-value" id="throwingValue">5</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Cutting:</label>
+                            <div class="skill-slider">
+                                <input type="range" id="cutting" min="1" max="10" value="5" inputmode="none">
+                                <span class="skill-value" id="cuttingValue">5</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Athleticism:</label>
+                            <div class="skill-slider">
+                                <input type="range" id="athleticism" min="1" max="10" value="5" inputmode="none">
+                                <span class="skill-value" id="athleticismValue">5</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Teamwork:</label>
-                        <div class="skill-slider">
-                            <input type="range" id="teamwork" min="1" max="10" value="5">
-                            <span class="skill-value" id="teamworkValue">5</span>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Defense:</label>
+                            <div class="skill-slider">
+                                <input type="range" id="defense" min="1" max="10" value="5" inputmode="none">
+                                <span class="skill-value" id="defenseValue">5</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Experience:</label>
-                        <div class="skill-slider">
-                            <input type="range" id="experience" min="1" max="10" value="5">
-                            <span class="skill-value" id="experienceValue">5</span>
+                        <div class="form-group">
+                            <label>Teamwork:</label>
+                            <div class="skill-slider">
+                                <input type="range" id="teamwork" min="1" max="10" value="5" inputmode="none">
+                                <span class="skill-value" id="teamworkValue">5</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Experience:</label>
+                            <div class="skill-slider">
+                                <input type="range" id="experience" min="1" max="10" value="5" inputmode="none">
+                                <span class="skill-value" id="experienceValue">5</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -623,6 +893,16 @@
                 <button type="submit">Add Player</button>
             </form>
         </div>
+
+        <!-- Dark Mode Toggle Switch -->
+<div class="dark-mode-toggle">
+    <input type="checkbox" id="darkModeToggle">
+    <label for="darkModeToggle">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+        <span class="slider"></span>
+    </label>
+</div>
     </div>
 
     <script>
@@ -661,7 +941,7 @@
         
         // Initialize slider value displays
         document.addEventListener('DOMContentLoaded', function() {
-            const sliders = ['throwing', 'cutting', 'athleticism', 'defense', 'teamwork', 'experience'];
+            const sliders = ['throwing', 'cutting', 'athleticism', 'defense', 'teamwork', 'experience', 'totalScore'];
             sliders.forEach(skill => {
                 const slider = document.getElementById(skill);
                 const valueSpan = document.getElementById(skill + 'Value');
@@ -669,6 +949,60 @@
                     valueSpan.textContent = slider.value;
                 });
             });
+
+            // --- Total Score Slider Logic ---
+            const skillIds = ['throwing', 'cutting', 'athleticism', 'defense', 'teamwork', 'experience'];
+            const totalSlider = document.getElementById('totalScore');
+            const totalValue = document.getElementById('totalScoreValue');
+
+            function updateTotalSlider() {
+                let sum = 0;
+                skillIds.forEach(id => {
+                    sum += parseInt(document.getElementById(id).value, 10);
+                });
+                totalSlider.value = sum;
+                totalValue.textContent = sum;
+            }
+
+            function updateSkillsFromTotal(newTotal) {
+                // Get current values and sum
+                let current = skillIds.map(id => parseInt(document.getElementById(id).value, 10));
+                let currentSum = current.reduce((a, b) => a + b, 0);
+                if (currentSum === 0) currentSum = 1; // Prevent division by zero
+
+                // Scale each skill proportionally
+                let scaled = current.map(val => Math.round(val * newTotal / currentSum));
+
+                // Adjust for rounding errors
+                let diff = newTotal - scaled.reduce((a, b) => a + b, 0);
+                // Distribute the difference
+                for (let i = 0; diff !== 0; i = (i + 1) % scaled.length) {
+                    if (diff > 0 && scaled[i] < 10) { scaled[i]++; diff--; }
+                    else if (diff < 0 && scaled[i] > 1) { scaled[i]--; diff++; }
+                    if (diff === 0) break;
+                }
+
+                // Set new values and update displays
+                skillIds.forEach((id, idx) => {
+                    document.getElementById(id).value = scaled[idx];
+                    document.getElementById(id + 'Value').textContent = scaled[idx];
+                });
+                totalSlider.value = newTotal;
+                totalValue.textContent = newTotal;
+            }
+
+            // When any skill slider changes, update total
+            skillIds.forEach(id => {
+                document.getElementById(id).addEventListener('input', updateTotalSlider);
+            });
+
+            // When total slider changes, update all skills
+            totalSlider.addEventListener('input', function() {
+                updateSkillsFromTotal(parseInt(this.value, 10));
+            });
+
+            // Initialize on load
+            updateTotalSlider();
         });
         
         // Form submission
@@ -693,7 +1027,7 @@
         this.reset();
 
         // Reset slider displays
-        const sliders = ['throwing', 'cutting', 'athleticism', 'defense', 'teamwork', 'experience'];
+        const sliders = ['throwing', 'cutting', 'athleticism', 'defense', 'teamwork', 'experience', 'totalScore'];
         sliders.forEach(skill => {
             document.getElementById(skill + 'Value').textContent = '5';
         });
@@ -1135,28 +1469,6 @@
             balanceInfo.style.display = 'block';
         }
         
-        // Add some sample players for testing
-        function addSamplePlayers() {
-            const samplePlayers = [
-                new Player('Alice', 'F', 8, 7, 9, 6, 8, 7),
-                new Player('Bob', 'M', 6, 8, 7, 8, 7, 6),
-                new Player('Carol', 'F', 7, 9, 6, 7, 9, 8),
-                new Player('Dave', 'M', 9, 6, 8, 7, 6, 9),
-                new Player('Emma', 'F', 5, 7, 8, 9, 8, 6),
-                new Player('Frank', 'M', 8, 5, 7, 6, 7, 8),
-                new Player('Grace', 'F', 7, 8, 6, 8, 9, 7),
-                new Player('Henry', 'M', 6, 7, 9, 5, 6, 8),
-                new Player('Ivy', 'F', 9, 6, 7, 8, 7, 6),
-                new Player('Jack', 'M', 5, 8, 6, 7, 8, 9)
-            ];
-            
-            players.push(...samplePlayers);
-            updatePlayerList();
-        }
-        
-        // Uncomment the line below to add sample players for testing
-        // addSamplePlayers();
-
         function changeNumTeams(delta) {
             const numTeamsInput = document.getElementById('numTeams');
             let value = parseInt(numTeamsInput.value) || 2;
@@ -1240,9 +1552,63 @@ document.addEventListener('DOMContentLoaded', function() {
     if (searchInput) {
         searchInput.addEventListener('input', updatePlayerList);
     }
-});
 
-function setRegularPlayer(isRegular) {
+    // --- Total Score Slider Logic ---
+    const skillIds = ['throwing', 'cutting', 'athleticism', 'defense', 'teamwork', 'experience'];
+    const totalSlider = document.getElementById('totalScore');
+    const totalValue = document.getElementById('totalScoreValue');
+
+    function updateTotalSlider() {
+        let sum = 0;
+        skillIds.forEach(id => {
+            sum += parseInt(document.getElementById(id).value, 10);
+        });
+        totalSlider.value = sum;
+        totalValue.textContent = sum;
+    }
+
+    function updateSkillsFromTotal(newTotal) {
+        // Get current values and sum
+        let current = skillIds.map(id => parseInt(document.getElementById(id).value, 10));
+        let currentSum = current.reduce((a, b) => a + b, 0);
+        if (currentSum === 0) currentSum = 1; // Prevent division by zero
+
+        // Scale each skill proportionally
+        let scaled = current.map(val => Math.round(val * newTotal / currentSum));
+
+        // Adjust for rounding errors
+        let diff = newTotal - scaled.reduce((a, b) => a + b, 0);
+        // Distribute the difference
+        for (let i = 0; diff !== 0; i = (i + 1) % scaled.length) {
+            if (diff > 0 && scaled[i] < 10) { scaled[i]++; diff--; }
+            else if (diff < 0 && scaled[i] > 1) { scaled[i]--; diff++; }
+            if (diff === 0) break;
+        }
+
+        // Set new values and update displays
+        skillIds.forEach((id, idx) => {
+            document.getElementById(id).value = scaled[idx];
+            document.getElementById(id + 'Value').textContent = scaled[idx];
+        });
+        totalSlider.value = newTotal;
+        totalValue.textContent = newTotal;
+    }
+
+    // When any skill slider changes, update total
+    skillIds.forEach(id => {
+        document.getElementById(id).addEventListener('input', updateTotalSlider);
+    });
+
+    // When total slider changes, update all skills
+    totalSlider.addEventListener('input', function() {
+        updateSkillsFromTotal(parseInt(this.value, 10));
+    });
+
+    // Initialize on load
+    updateTotalSlider();
+});
+        
+        function setRegularPlayer(isRegular) {
     document.getElementById('playerRegular').value = isRegular ? "true" : "false";
     document.getElementById('regularYesBtn').classList.toggle('active', isRegular);
     document.getElementById('regularNoBtn').classList.toggle('active', !isRegular);
@@ -1259,6 +1625,75 @@ function toggleAddPlayerForm() {
         icon.innerHTML = '&#x25BC;'; // Down arrow
     }
 }
+
+// Add this JS for the collapsible sub sliders ribbon
+function toggleSubSlidersRibbon() {
+    const ribbon = document.getElementById('subSlidersRibbon');
+    const icon = document.getElementById('subSlidersToggleIcon');
+    if (ribbon.style.display === 'none' || ribbon.style.display === '') {
+        ribbon.style.display = 'block';
+        icon.innerHTML = '&#x25B2;'; // Up arrow
+    } else {
+        ribbon.style.display = 'none';
+        icon.innerHTML = '&#x25BC;'; // Down arrow
+    }
+}
+
+// Open/close state on load (collapsed by default)
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('subSlidersRibbon').style.display = 'none';
+    document.getElementById('subSlidersToggleIcon').innerHTML = '&#x25BC;';
+});
+
+// Dark mode toggle
+const toggleButton = document.getElementById('darkModeToggle');
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+
+    // Update button text
+    toggleButton.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+
+    // Save preference to localStorage
+    localStorage.setItem('darkMode', isDarkMode);
+});
+
+// Load dark mode preference on startup
+document.addEventListener('DOMContentLoaded', () => {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        document.getElementById('darkModeToggle').textContent = 'Light Mode';
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const container = document.querySelector('.container');
+    const sections = document.querySelectorAll('.section');
+    const h1 = document.querySelector('h1');
+
+    darkModeToggle.addEventListener('change', function() {
+        body.classList.toggle('dark-mode');
+        container.classList.toggle('dark-mode');
+        sections.forEach(section => section.classList.toggle('dark-mode'));
+        h1.classList.toggle('dark-mode');
+
+        // Save preference to localStorage
+        localStorage.setItem('darkMode', this.checked);
+    });
+
+    // Load dark mode preference on startup
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    darkModeToggle.checked = isDarkMode;
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+        container.classList.add('dark-mode');
+        sections.forEach(section => section.classList.add('dark-mode'));
+        h1.classList.add('dark-mode');
+    }
+});
     </script>
 </body>
 </html>
